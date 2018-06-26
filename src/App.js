@@ -11,15 +11,17 @@ import './index.css';
 //components
 class App extends Component {
   render() {
-    return ( 
-        <Router>
-          <Container fluid={true}>
-              <Navbar/>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/blog" component={Blog}/>
-           </Container>
-        </Router>
-    );
+      return (
+          <Router>
+              <div>
+                  <Navbar />
+                  <Container fluid={true}>
+                      <Route exact path="/" component={Home} />
+                      <Route exact path="/blog" component={Blog} />
+                  </Container>
+              </div>
+          </Router>
+      );
   }
 }
 
