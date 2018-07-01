@@ -10,7 +10,7 @@ import {
   UncontrolledDropdown,
   Container
   } from 'reactstrap';
-
+import {NavLink as Link} from 'react-router-dom';
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -29,15 +29,15 @@ export default class Example extends React.Component {
     return (
       <Container fluid={true}>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Nevergrim</NavbarBrand>
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">HOME</NavLink>
+                  <NavLink tag={Link} to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/blog">BLOG</NavLink>
+                  <NavLink tag={Link} to="/blog">Blog</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
               </UncontrolledDropdown>
