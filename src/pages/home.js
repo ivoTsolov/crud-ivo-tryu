@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import {Row, Col, Container} from 'reactstrap';
+import Carousel from '../components/carousel';
+import Caption from '../components/headerCaption';
 
 
 //components
 class Home extends Component {
   render() {
     return (
-    <Container fluid={true}>
+    <div>
+      <Row>
+        <Caption/>
+      </Row>
       <Row>
           <Col>
           <h2> 
@@ -36,7 +41,10 @@ class Home extends Component {
           </p>
           </Col>
       </Row>
-    </Container>
+      <Row>
+        <Carousel/>
+      </Row>
+    </div>
     );
   }
 }

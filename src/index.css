@@ -18,3 +18,14 @@ h3 {
 a {
   font-size:  1.8em;
 }
+
+.imgCarousel {
+  height: 550px;
+  width:  100% !important;
+}
+.registrationForm {
+  border: solid #777777 2px;
+  border-radius: 10px;
+  padding: 20px;
+
+}

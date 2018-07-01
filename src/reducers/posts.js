@@ -1,8 +1,9 @@
 
-import {POST_CREATED} from '../actions/actionTypes';
+import {POST_CREATED, ACCOUNT_FAILED} from '../actions/actionTypes';
 import {POST_FAILED} from '../actions/actionTypes';
 import {UPDATE_A_POST} from '../actions/actionTypes';
 import {SET_POSTS} from '../actions/actionTypes';
+import ACCOUNT_CREATED from '../actions/actionTypes';
 import axios from 'axios';
 
 
@@ -11,7 +12,11 @@ const initialState = {
     postCreated: null,
     posts : [
 
-    ]
+    ],
+    registered: false,
+    username: "",
+    password: "",
+    
 }
 
  export default function posts(state = initialState, action)  {
@@ -33,6 +38,16 @@ const initialState = {
             postCreated: false
 
             }
+        case ACCOUNT_CREATED: 
+            return {
+                ...state,
+                registered: true
+            }
+        case ACCOUNT_FAILED: 
+            return {
+                ...state,
+                registered: false
+            }
         case SET_POSTS: 
             return { 
                 ...state,
@@ -52,7 +67,7 @@ const initialState = {
         }
     }
  }
-
+//posts
  export function post_created() {
     return {
         type: POST_CREATED
@@ -63,6 +78,23 @@ const initialState = {
          type: POST_FAILED
      }
  }
+
+
+ // accounts
+ export function account_created(){
+     return {
+         type: ACCOUNT_CREATED
+     }
+ }
+
+ export function account_failed(){
+     return {
+         type: ACCOUNT_FAILED
+     }
+ }
+
+
+ //
 export function set_posts(posts){
     return {
         type: SET_POSTS,
@@ -83,6 +115,20 @@ export function set_posts(posts){
             console.log(error);
           });
     };
+ }
+
+ export function createAccount(params) {
+    console.log(JSON.stringify(params));
+    return(dispatch, getState) =>{
+        axios.post('/createAccount', params)
+
+        .then(function(response){
+            dispatch(account_created());
+            console.log(response)
+        }).catch(function(error) {
+            dispatch(account_failed());
+        });
+    }
  }
 
  export function getPosts(){

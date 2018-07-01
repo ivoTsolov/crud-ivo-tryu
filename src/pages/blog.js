@@ -5,7 +5,7 @@
   import {update, create, getPosts, editPost, deletePost} from '../reducers/posts';
 
   //ui elements
-  import {Row, Col} from 'reactstrap';
+  import {Row} from 'reactstrap';
   
 
   //components
