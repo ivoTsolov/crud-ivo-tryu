@@ -3,8 +3,12 @@ import {POST_CREATED, ACCOUNT_FAILED} from '../actions/actionTypes';
 import {POST_FAILED} from '../actions/actionTypes';
 import {UPDATE_A_POST} from '../actions/actionTypes';
 import {SET_POSTS} from '../actions/actionTypes';
-import ACCOUNT_CREATED from '../actions/actionTypes';
+import {ACCOUNT_CREATED} from '../actions/actionTypes';
 import axios from 'axios';
+
+// hash import
+import bcrypt from 'bcryptjs';
+//
 
 
 const initialState = {
@@ -117,19 +121,35 @@ export function set_posts(posts){
     };
  }
 
- export function createAccount(params) {
-    console.log(JSON.stringify(params));
-    return(dispatch, getState) =>{
-        axios.post('/createAccount', params)
+    export function createAccount(username, password) {  //remove params if second approach
+        
+        return(dispatch, getState ) =>{
+            // const state = getState();
+            // const params = {
+            // username: state.posts.username,
+            // password: state.posts.password
+            // }
+        hashCreator(password).then((password)=>{
+            
+        axios.post('/createAccount', {username, password})
 
         .then(function(response){
             dispatch(account_created());
             console.log(response)
         }).catch(function(error) {
             dispatch(account_failed());
-        });
+        });})
+            
+        }
     }
+
+ function hashCreator(passwordPromise) {
+     let password = bcrypt.hash(passwordPromise)
+     console.log(password);
+     return password
+     
  }
+ 
 
  export function getPosts(){
     return (dispatch, getState) => {

@@ -37,7 +37,7 @@
                     </Col>
                 </Row>
                 <Input type="password" style={{marginBottom: "50px"}} name="password" value={this.props.password} onChange={(e)=>{this.props.update(e.target.name, e.target.value)}}/>
-                <Button type="submit" onClick={()=>{this.props.update("registered", true)}}>Register</Button>
+                <Button type="submit" onClick={()=>{this.props.createAccount(this.props.username, this.props.password)}}>Register</Button>
 
             </Container>
         </Container>
