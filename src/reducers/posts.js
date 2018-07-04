@@ -4,12 +4,16 @@ import {POST_FAILED} from '../actions/actionTypes';
 import {UPDATE_A_POST} from '../actions/actionTypes';
 import {SET_POSTS} from '../actions/actionTypes';
 import {ACCOUNT_CREATED} from '../actions/actionTypes';
+import {LOGIN_SUCCESS} from '../actions/actionTypes';
+import {LOGIN_FAILED} from '../actions/actionTypes';
 import axios from 'axios';
 
 // hash import
 import bcrypt from 'bcryptjs';
 //
 
+
+const saltEnv = process.env.REACT_APP_SECRET_CODE;
 
 const initialState = {
     post: '',
@@ -20,7 +24,7 @@ const initialState = {
     registered: false,
     username: "",
     password: "",
-    
+    logedIn: null
 }
 
  export default function posts(state = initialState, action)  {
@@ -51,6 +55,16 @@ const initialState = {
             return {
                 ...state,
                 registered: false
+            }
+        case LOGIN_SUCCESS: 
+            return {
+                ...state,
+                logedIn: true
+            }
+        case LOGIN_FAILED:
+            return {
+                ...state,
+                logedIn: false
             }
         case SET_POSTS: 
             return { 
@@ -97,6 +111,17 @@ const initialState = {
      }
  }
 
+export function login_success(){
+    return {
+        type: LOGIN_SUCCESS
+    }
+}
+
+export function login_failed(){
+    return {
+        type: LOGIN_FAILED
+    }
+}
 
  //
 export function set_posts(posts){
@@ -130,12 +155,12 @@ export function set_posts(posts){
             // password: state.posts.password
             // }
         hashCreator(password).then((password)=>{
+            console.log(password);
             
         axios.post('/createAccount', {username, password})
 
         .then(function(response){
             dispatch(account_created());
-            console.log(response)
         }).catch(function(error) {
             dispatch(account_failed());
         });})
@@ -143,8 +168,24 @@ export function set_posts(posts){
         }
     }
 
+export function logMeIn(username, password) {
+    console.log(password);
+    return (dispatch, getState) => {
+        hashCreator(password).then((password)=>{
+            axios.post('/login', {username, password})
+
+            .then((response)=>{
+                dispatch(login_success());
+
+            }).catch((error)=>{
+                dispatch(login_failed());
+            })
+        })
+    }
+}
+
  function hashCreator(passwordPromise) {
-     let password = bcrypt.hash(passwordPromise)
+     let password = bcrypt.hash(passwordPromise, 10);
      console.log(password);
      return password
      

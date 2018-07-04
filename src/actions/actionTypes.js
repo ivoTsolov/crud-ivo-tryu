@@ -5,3 +5,5 @@ export const SET_POSTS = 'SET_POSTS';
 export const EDIT_A_POST = 'EDIT_A_POST';
 export const ACCOUNT_CREATED = 'ACCOUNT_CREATED';
 export const ACCOUNT_FAILED = 'ACCOUNT_FAILED';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';

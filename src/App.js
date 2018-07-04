@@ -5,12 +5,13 @@ import {Container} from 'reactstrap';
 import Home from './pages/home';
 import Blog from './pages/blog';
 import About from './pages/about';
-import RegisterForm from './pages/registerForm';
+import RegistrationForm  from './pages/registerForm';
+import Login from './pages/loginPage';
 //
 import Navbar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import RegistrationForm  from './pages/registerForm';
+
  
 
 //components
@@ -25,6 +26,7 @@ class App extends Component {
                       <Route exact path="/blog" component={Blog} />
                       <Route exact path="/about" component={About} />
                       <Route exact path="/register" component={RegistrationForm}/>
+                      <Route exact path="/login" component={Login}/>
                   </Container>
               </div>
           </Router>

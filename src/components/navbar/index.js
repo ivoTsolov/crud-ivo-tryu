@@ -43,6 +43,9 @@ export default class Example extends React.Component {
               <NavItem>
                   <NavLink tag={Link} to="/register">Registrer</NavLink>
               </NavItem>
+              <NavItem>
+                  <NavLink tag={Link} to="/login">Login</NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
               </UncontrolledDropdown>
             </Nav>
