@@ -1,4 +1,3 @@
-
 import {POST_CREATED, ACCOUNT_FAILED} from '../actions/actionTypes';
 import {POST_FAILED} from '../actions/actionTypes';
 import {UPDATE_A_POST} from '../actions/actionTypes';
@@ -154,16 +153,16 @@ export function set_posts(posts){
             // username: state.posts.username,
             // password: state.posts.password
             // }
-        hashCreator(password).then((password)=>{
+       return hashCreator(password).then((password)=>{
             console.log(password);
             
-        axios.post('/createAccount', {username, password})
+        return axios.post('/createAccount', {username, password})
 
-        .then(function(response){
+        
+        }).then(function(response){
             dispatch(account_created());
         }).catch(function(error) {
-            dispatch(account_failed());
-        });})
+            dispatch(account_failed());})
             
         }
     }
@@ -171,24 +170,22 @@ export function set_posts(posts){
 export function logMeIn(username, password) {
     console.log(password);
     return (dispatch, getState) => {
-        hashCreator(password).then((password)=>{
-            axios.post('/login', {username, password})
+      return hashCreator(password).then((password)=>{
+          return  axios.post('/login', {username, password})         
+        }).then((response)=>{
+            dispatch(login_success());
 
-            .then((response)=>{
-                dispatch(login_success());
-
-            }).catch((error)=>{
-                dispatch(login_failed());
-            })
+        }).catch((error)=>{
+            dispatch(login_failed());
         })
     }
 }
 
  function hashCreator(passwordPromise) {
-     let password = bcrypt.hash(passwordPromise, 10);
-     console.log(password);
-     return password
-     
+     console.log(process.env);
+        let password = bcrypt.hash(passwordPromise, process.env.REACT_APP_SECRET_CODE);
+        console.log(password);
+        return password
  }
  
 
@@ -218,6 +215,3 @@ export function logMeIn(username, password) {
  }
 
   
-
-
-

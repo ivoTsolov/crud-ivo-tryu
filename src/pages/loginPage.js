@@ -3,6 +3,7 @@
   import {connect} from 'react-redux';
   //action creators and ajax
   import {update,logMeIn} from '../reducers/posts';
+  import { withRouter } from 'react-router';
 
   //ui elements
   import {Row, Container, Input, Button, Col} from 'reactstrap';
@@ -13,6 +14,10 @@
     constructor(props) {
       super(props); 
       this.state = {postToEdit: null}    
+      this.redirect = this.redirect.bind(this);
+    }
+    redirect(){
+      
     }
 
   
@@ -37,7 +42,13 @@
                     </Col>
                 </Row>
                 <Input type="password" style={{marginBottom: "50px"}} name="password" value={this.props.password} onChange={(e)=>{this.props.update(e.target.name, e.target.value)}}/>
-                <Button type="submit" onClick={()=>{this.props.logMeIn(this.props.username, this.props.password)}}>Login</Button>
+                <Button type="submit" onClick={()=>{
+                this.props.logMeIn(this.props.username, this.props.password).then((res)=>{
+                  this.props.history.push("/admin")
+                }).catch((err)=>{
+
+                })              
+              }}>Login</Button>
 
             </Container>
         </Container>

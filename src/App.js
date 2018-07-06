@@ -7,6 +7,7 @@ import Blog from './pages/blog';
 import About from './pages/about';
 import RegistrationForm  from './pages/registerForm';
 import Login from './pages/loginPage';
+import Admin from './pages/admin';
 //
 import Navbar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,6 +28,7 @@ class App extends Component {
                       <Route exact path="/about" component={About} />
                       <Route exact path="/register" component={RegistrationForm}/>
                       <Route exact path="/login" component={Login}/>
+                      <Route exact path="/admin" component={Admin}/>
                   </Container>
               </div>
           </Router>
