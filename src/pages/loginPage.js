@@ -2,8 +2,7 @@
   import React, { Component } from 'react';
   import {connect} from 'react-redux';
   //action creators and ajax
-  import {update,logMeIn} from '../reducers/posts';
-  import { withRouter } from 'react-router';
+  import {update,logMeIn} from '../reducers/logins';
 
   //ui elements
   import {Row, Container, Input, Button, Col} from 'reactstrap';
@@ -13,7 +12,6 @@
   class RegistrationForm extends Component {
     constructor(props) {
       super(props); 
-      this.state = {postToEdit: null}    
       this.redirect = this.redirect.bind(this);
     }
     redirect(){
@@ -59,8 +57,8 @@
 
   function mapStateToProps(state){
     return{
-      username: state.posts.username,
-      password: state.posts.password,
+      username: state.logins.username,
+      password: state.logins.password,
     }
   }
   export default connect(mapStateToProps, { 

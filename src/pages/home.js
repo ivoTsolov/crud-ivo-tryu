@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {Row, Col, Container} from 'reactstrap';
-import Carousel from '../components/carousel';
-import Caption from '../components/headerCaption';
 
 
 //components
@@ -10,8 +8,34 @@ class Home extends Component {
     return (
     <div>
       <Row>
-        <Caption/>
+      <Container fluid={true} className="presentation">
+        <Row>
+          <Col>
+            <h1 style={{textAlign:"center", color:"white", marginTop: '220px'}}>This is my playground
+           
+            </h1>
+          
+          </Col>
+
+        </Row>
+    
+
+      </Container>  
+ 
+
       </Row>
+      <Row className="underHeader">
+            <Col>
+            <p style={{ color: "white", fontSize: "25px"}}>
+            Here i show tasks given to me from some job applications or just proof of concepts,
+            feel free to explore my work, but keep in mind u dont know the requirments for a task that
+            has not been given by you, every company has its own approach or requirments to hire people.
+            You mind find some depricated and not good practices or patterns here so please find your
+            desired task on the navigation bar top right.
+            </p>
+            </Col>
+        </Row>
+   
       <Row>
           <Col>
           <h2> 
@@ -40,9 +64,6 @@ class Home extends Component {
            "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
           </p>
           </Col>
-      </Row>
-      <Row>
-        <Carousel/>
       </Row>
     </div>
     );

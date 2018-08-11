@@ -10,7 +10,10 @@ import {
     UncontrolledDropdown
 } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
-export default class Example extends React.Component {
+import {connect} from 'react-redux';
+
+
+ class Navigation extends React.Component {
     constructor(props) {
         super(props);
 
@@ -36,14 +39,22 @@ export default class Example extends React.Component {
                                 Home
                             </NavLink>
                         </NavItem>
+                        { this.props.logedIn && 
                         <NavItem>
-                            <NavLink tag={Link} to="/blog">
-                                Blog
+                            <NavLink tag={Link} to="/admin">
+                                Admin
                             </NavLink>
-                        </NavItem>
+                        </NavItem>  
+                        }
+
                         <NavItem>
                             <NavLink tag={Link} to="/about">
                                 About
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/weather">
+                                Weather App
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -56,6 +67,13 @@ export default class Example extends React.Component {
                                 Login
                             </NavLink>
                         </NavItem>
+                        { this.props.logedIn && 
+                        <NavItem>
+                            <NavLink tag={Link} to="/logout">
+                                Logout
+                            </NavLink>
+                        </NavItem>  
+                        }
                         <UncontrolledDropdown nav inNavbar />
                     </Nav>
                 </Collapse>
@@ -63,3 +81,13 @@ export default class Example extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        logedIn: state.posts.logedIn
+    }
+}
+
+export default connect(
+    mapStateToProps,
+)(Navigation);

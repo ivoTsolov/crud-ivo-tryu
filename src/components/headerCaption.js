@@ -3,7 +3,6 @@ import pictureOne from './img/1.jpg';
 import {
     Carousel,
     CarouselItem,
-    CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
 

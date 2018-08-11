@@ -7,7 +7,9 @@ import Blog from './pages/blog';
 import About from './pages/about';
 import RegistrationForm  from './pages/registerForm';
 import Login from './pages/loginPage';
-import Admin from './pages/admin';
+import Logout from './pages/logout';
+import WeatherApp from './pages/weather';
+import FiveDaysWeather from './pages/fiveDaysWeather';
 //
 import Navbar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,12 +26,15 @@ class App extends Component {
                   <Navbar />
                   <Container fluid={true}>
                       <Route exact path="/" component={Home} />
-                      <Route exact path="/blog" component={Blog} />
+                      <Route exact path="/admin" component={Blog} />
                       <Route exact path="/about" component={About} />
                       <Route exact path="/register" component={RegistrationForm}/>
                       <Route exact path="/login" component={Login}/>
-                      <Route exact path="/admin" component={Admin}/>
+                      <Route exact path="/logout" component={Logout}/>
+                      <Route exact path="/weather" component={WeatherApp}/>
+                      <Route exact path="/fiveDaysWeather" component={FiveDaysWeather}/>
                   </Container>
+               
               </div>
           </Router>
       );

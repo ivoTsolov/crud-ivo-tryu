@@ -1,9 +1,17 @@
+//CRUD APP
 export const POST_CREATED = 'CREATE_A_POST';
 export const POST_FAILED = 'POST_FAILED';
 export const UPDATE_A_POST = 'UPDATE_A_POST';
 export const SET_POSTS = 'SET_POSTS';
 export const EDIT_A_POST = 'EDIT_A_POST';
+// SIMPLE REGISTRATION APP
 export const ACCOUNT_CREATED = 'ACCOUNT_CREATED';
 export const ACCOUNT_FAILED = 'ACCOUNT_FAILED';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const LOG_OUT = 'LOG_OUT';
+
+//WEATHER APP
+export const GET_WEATHER = 'GET_WEATHER';
+export const SET_WEATHER = 'SET_WEATHER';
+export const UPDATE_A_WEATHER = 'UPDATE_A_WEATHER';

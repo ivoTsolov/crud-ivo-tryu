@@ -1,47 +1,25 @@
-import { POST_CREATED, ACCOUNT_FAILED } from '../actions/actionTypes';
-import { POST_FAILED } from '../actions/actionTypes';
-import { UPDATE_A_POST } from '../actions/actionTypes';
-import { SET_POSTS } from '../actions/actionTypes';
-import { ACCOUNT_CREATED } from '../actions/actionTypes';
-import { LOGIN_SUCCESS } from '../actions/actionTypes';
-import { LOGIN_FAILED } from '../actions/actionTypes';
-import {LOG_OUT} from '../actions/actionTypes';
+import {ACCOUNT_CREATED, ACCOUNT_FAILED, LOGIN_SUCCESS, LOGIN_FAILED, LOG_OUT, UPDATE_A_POST  } from '../actions/actionTypes';
+
 import axios from 'axios';
 
 // hash import
 import bcrypt from 'bcryptjs';
 //
- 
+
 
 const initialState = {
-    post: '',
-    postCreated: null,
-    posts: [],
     registered: false,
     username: '',
     password: '',
     logedIn: null,
-    title: '',
-    imagePath: '',
-    body:''
 };
 
-export default function posts(state = initialState, action) {
+export default function logins(state = initialState, action) {
     switch (action.type) {
         case UPDATE_A_POST:
             return {
                 ...state,
                 [action.payload.key]: action.payload.value
-            };
-        case POST_CREATED:
-            return {
-                ...state,
-                postCreated: true
-            };
-        case POST_FAILED:
-            return {
-                ...state,
-                postCreated: false
             };
         case ACCOUNT_CREATED:
             return {
@@ -68,11 +46,6 @@ export default function posts(state = initialState, action) {
                 ...state,
                 logedIn: false
             };
-        case SET_POSTS:
-            return {
-                ...state,
-                posts: action.payload
-            };
         default:
             return state;
     }
@@ -88,16 +61,6 @@ export function update(key, value) {
     };
 }
 //posts
-export function post_created() {
-    return {
-        type: POST_CREATED
-    };
-}
-export function post_failed() {
-    return {
-        type: POST_FAILED
-    };
-}
 
 // accounts
 export function account_created() {
@@ -124,27 +87,6 @@ export function login_failed() {
     };
 }
 
-export function set_posts(posts) {
-    return {
-        type: SET_POSTS,
-        payload: posts
-    };
-}
-export function create(title, body, imagePath) {
-    return (dispatch, getState) => {
-        axios
-            .post('/makeApost', { title, body, imagePath })
-
-            .then(function(response) {
-                dispatch(post_created());
-                console.log(response);
-            })
-            .catch(function(error) {
-                dispatch(post_failed());
-                console.log(error);
-            });
-    };
-}
 
 export function createAccount(username, password) {
     //remove params if second approach
@@ -203,28 +145,4 @@ function hashCreator(passwordPromise) {
     return password;
 }
 
-export function getPosts() {
-    return (dispatch, getState) => {
-        axios.get('/getAllPosts').then(res => {
-            dispatch(set_posts(res.data));
-        });
-    };
-}
 
-export function editPost(id, title, body, imagePath) {
-    return (dispatch, getState) => {
-        return axios
-            .put('/editApost', { _id: id, title, body, imagePath })
-            .then(res => {
-                dispatch(getPosts());
-            });
-    };
-}
-
-export function deletePost(params) {
-    return (dispatch, getState) => {
-        return axios.delete(`/post/${params}`).then(res => {
-            dispatch(getPosts());
-        });
-    };
-}

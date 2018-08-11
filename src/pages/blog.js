@@ -11,10 +11,10 @@ import {
 } from '../reducers/posts';
 
 //ui elements
-import { Row } from 'reactstrap';
+import { Row, Input,  Button, Container, Col } from 'reactstrap';
 
 //components
-class Blog extends Component {
+class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = { postToEdit: null };
@@ -43,7 +43,9 @@ class Blog extends Component {
 
     render() {
         return (
-            <Row>
+            <Container>
+                <Row>
+                <Col>
                 <form
                     onSubmit={event => {
                         event.preventDefault();
@@ -55,7 +57,7 @@ class Blog extends Component {
                     }}
                 >
                     <h1>Blog List</h1>
-                    <input
+                    <Input
                         type="text"
                         name="title"
                         value={this.props.title}
@@ -63,7 +65,7 @@ class Blog extends Component {
                             this.props.update(e.target.name, e.target.value);
                         }}
                     />
-                    <input
+                    <Input
                         type="text"
                         name="imagePath"
                         value={this.props.imagePath}
@@ -71,70 +73,98 @@ class Blog extends Component {
                             this.props.update(e.target.name, e.target.value);
                         }}
                     />
-                    <textarea
-                        type="text"
+
+                    <Input
+                        value= {this.props.body}
+                        type="textarea"
                         name="body"
                         onChange={e => {
                             this.props.update(e.target.name, e.target.value);
                         }}
-                    >
-                        {this.props.body}
-                    </textarea>
-                    <button type="submit">POST</button>
+                    />
+
+                    <Button type="submit" style={{marginTop: '20px'}}>POST</Button>
                 </form>
+                </Col>
+                </Row>
+                <Row style={{marginTop:'50px'}}>
+                <Col>
                 <form
                     onSubmit={event => {
                         event.preventDefault();
                         this.props.getPosts();
                     }}
                 >
-                    <button type="submit">SHOW ALL POSTS</button>
+                    <Button type="submit">SHOW ALL POSTS</Button>
                 </form>
+                </Col>
+                </Row>
+                <Row>
 
+               
                 {this.props.posts.map((post, idx) => {
                     return (
-                        <p key={idx}>
-                            {post.title}
-                            <button
+                        <Container key={idx}>
+                            <Row>
+                                <Col>
+                                <h2>{post.title}</h2>
+                                
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <p>
+                                     {post.body}
+                                    </p>
+                                </Col>
+                            </Row>
+                            
+                            
+                            <Button
                                 onClick={() => {
                                     this.setState({ postToEdit: post });
                                 }}
                             >
                                 Edit
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                                 onClick={() => {
                                     this.props.deletePost(post._id);
                                 }}
                             >
                                 Delete
-                            </button>
-                        </p>
+                            </Button>
+                        </Container>
                     );
                 })}
 
+                 </Row>
+                
+
                 {this.state.postToEdit && (
                     <div>
-                        <input
+                        <Input
                             name="title"
                             value={this.state.postToEdit.title}
                             onChange={this.changePostProperty}
                         />
-                        <input
+                        <Input
                             name="imagePath"
                             value={this.state.postToEdit.imagePath}
                             onChange={this.changePostProperty}
                         />
-                        <textarea
+                        <Input
+                            value= {this.state.postToEdit.body}
+                            type="textarea"
                             name="body"
                             onChange={this.changePostProperty}
-                        >
-                            {this.state.postToEdit.body}
-                        </textarea>
-                        <button onClick={this.editPostAndHide}>SAVE</button>
+                        />
+                        <Button onClick={this.editPostAndHide}>SAVE</Button>
                     </div>
                 )}
-            </Row>
+
+
+            </Container>
         );
     }
 }
@@ -156,4 +186,4 @@ export default connect(
         editPost,
         deletePost
     }
-)(Blog);
+)(Admin);

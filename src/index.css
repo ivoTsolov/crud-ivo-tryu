@@ -4,7 +4,7 @@ body {
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 h2 {
@@ -14,14 +14,12 @@ h2 {
 h3 {
   font-size: 2.4em !important;
 }
-
-a {
-  font-size:  1.8em;
-}
+ 
 
 .imgCarousel {
   height: 550px;
-  width:  100% !important;
+  width: 100%;
+  max-width: 100%;
 }
 .registrationForm {
   border: solid #777777 2px;
@@ -29,3 +27,37 @@ a {
   padding: 20px;
 
 }
+
+.presentation {
+  min-height: 500px;
+  background-color: #333;
+}
+
+.weatherApp {
+  background-color:#552D51;
+  
+}
+
+/* .weatherBackground {
+  background: url("./images/weather.jpg") !important;
+} */
+.underHeader {
+  min-height: 200px;
+  background-color: #888;
+}
+
+.footer {
+  
+  background-color: #333;
+ 
+  height: 100px;
+  width: 100%;
+ 
+}
+
+input, textarea {
+  margin-top:10px !important;
+}
+
+ 
+ 

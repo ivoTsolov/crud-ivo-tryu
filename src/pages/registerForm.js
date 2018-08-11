@@ -2,7 +2,7 @@
   import React, { Component } from 'react';
   import {connect} from 'react-redux';
   //action creators and ajax
-  import {update,createAccount} from '../reducers/posts';
+  import {update,createAccount} from '../reducers/logins';
 
   //ui elements
   import {Row, Container, Input, Button, Col} from 'reactstrap';
@@ -10,14 +10,7 @@
 
   //components
   class RegistrationForm extends Component {
-    constructor(props) {
-      super(props); 
-      this.state = {postToEdit: null}    
-    }
-
-  
-  
-
+   
 
 
     render() {
@@ -37,7 +30,9 @@
                     </Col>
                 </Row>
                 <Input type="password" style={{marginBottom: "50px"}} name="password" value={this.props.password} onChange={(e)=>{this.props.update(e.target.name, e.target.value)}}/>
-                <Button type="submit" onClick={()=>{this.props.createAccount(this.props.username, this.props.password)}}>Register</Button>
+                <Button type="submit" onClick={()=>{this.props.createAccount(this.props.username, this.props.password).then(()=>{
+                            this.props.history.push("/login")
+                })}}>Register</Button>
 
             </Container>
         </Container>
@@ -48,8 +43,8 @@
 
   function mapStateToProps(state){
     return{
-      username: state.posts.username,
-      password: state.posts.password,
+      username: state.logins.username,
+      password: state.logins.password,
       
     }
   }
