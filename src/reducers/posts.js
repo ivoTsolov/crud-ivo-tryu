@@ -23,7 +23,8 @@ const initialState = {
     logedIn: null,
     title: '',
     imagePath: '',
-    body:''
+    body:'',
+    noNavbar: false
 };
 
 export default function posts(state = initialState, action) {

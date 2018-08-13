@@ -59,5 +59,12 @@ input, textarea {
   margin-top:10px !important;
 }
 
+
+ 
+.dynamicClass {
+  height: 100vh !important;
+  background: #333;
+}
+
  
  
